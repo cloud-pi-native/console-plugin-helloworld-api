@@ -1,0 +1,49 @@
+{
+  "name": "@cpn-console/hello-world-plugin",
+  "version": "0.1.0",
+  "description": "Hello world plugin for DSO console",
+  "type": "module",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./types",
+  "scripts": {
+    "dev": "nodemon --watch src --ext .ts --exec 'npm run build'",
+    "build": "tsc",
+    "build:clean": "rm -rf ./dist ./types ./tsconfig.tsbuildinfo",
+    "format": "eslint ./src --ext .js,.cjs,.ts --fix",
+    "lint": "eslint ./src",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "prepare": "husky"
+  },
+  "dependencies": {
+    "@cpn-console/hooks": "^2.0.1",
+    "@cpn-console/shared": "^1.0.1",
+    "axios": "^1.6.8"
+  },
+  "devDependencies": {
+    "@cpn-console/eslint-config": "^1.0.0",
+    "@cpn-console/keycloak-plugin": "^2.0.1",
+    "@cpn-console/kubernetes-plugin": "^2.0.0",
+    "@cpn-console/ts-config": "^1.1.0",
+    "@types/node": "^20.11.24",
+    "husky": "^9.0.11",
+    "nodemon": "^3.1.0",
+    "typescript": "^5.3.3",
+    "typescript-transform-paths": "^3.4.7"
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/",
+    "access": "public",
+    "tag": "latest"
+  },
+  "files": [
+    "dist",
+    "types"
+  ],
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.js"
+    }
+  }
+}

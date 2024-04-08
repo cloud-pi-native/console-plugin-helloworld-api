@@ -6,7 +6,7 @@ Le dépôt [helloworld](https://github.com/cloud-pi-native/console-plugin-hellow
 
 Il est aussi possible d'écrire un plugin étendant les fonctionnalités de la console rendant des services aux autres plugins.
 
-Un exemple de ce type de plugin est celui gérant un Hashicorp Vault. Ce plugin permet aux autres d'écrire/lire leurs secrets afin de pouvoir se connecter à différents webservice.
+Un exemple de ce type de plugin est celui gérant un Hashicorp Vault. Ce plugin permet aux autres d'écrire/lire leurs secrets afin de pouvoir se connecter à différents webservices.
 
 Le plugin exposant une API n'est pas appelé directement par les autres plugins, il faut à chaque fois passer par le PluginManager (gestionnaire des hooks) qui sert de place centrale.
 
@@ -26,7 +26,7 @@ Les dépendances de développement suivantes sont optionnelles:
 ## Développement
 Dans cet exemple, le code est divisé en 2 fichiers:
 - index.ts: point d'entrée du plugin contenant des informations à propos de ce dernier
-- class.js: logique métier du plugin API
+- class.js: logique métier du plugin API, correspont au code qui sera appelé lors des appels à l'API.
 
 
 ### Point d'entrée
@@ -78,6 +78,8 @@ Dans cet exemple, la classe `VaultProjectApi` expose les méthodes suivantes aux
 - read
 - write
 - destroy
+
+Vous trouverez ce code dans le fichier `class.js`
 
 ```ts
 import { PluginApi, ProjectLite } from '@cpn-console/hooks'

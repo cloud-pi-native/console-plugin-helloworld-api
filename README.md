@@ -50,12 +50,7 @@ const infos: ServiceInfos = {
 export const plugin: Plugin = {
   infos,
   subscribedHooks: {
-    getProjectSecrets: onlyApi,
     upsertProject: onlyApi,
-    deleteProject: {
-      ...onlyApi,
-      steps: { post: archiveDsoProject }, // Destroy all secrets for project
-    },
   },
   monitor,
 }

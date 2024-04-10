@@ -16,7 +16,7 @@ La console Cloud Pi Native et les plugins associés sont codés en JavaScript/Ty
 
 ### Dépendances
 Les dépendances suivantes sont nécessaires:
-- "@cpn-console/hooks": Permet de s'inscrire à des hooks
+- "@cpn-console/hooks": Fonctions utilitaires et typage des hooks
 - "@cpn-console/shared": Fonctions utilitaires
 
 Les dépendances de développement suivantes sont optionnelles:
@@ -26,7 +26,7 @@ Les dépendances de développement suivantes sont optionnelles:
 ## Développement
 Dans cet exemple, le code est divisé en 2 fichiers:
 - index.ts: point d'entrée du plugin contenant des informations à propos de ce dernier
-- class.js: logique métier du plugin API, correspont au code qui sera appelé lors des appels à l'API.
+- class.ts: logique métier du plugin API, permettant d'exposer une API aux autres plugins ou à soi-même.
 
 
 ### Point d'entrée
@@ -74,7 +74,7 @@ Dans cet exemple, la classe `VaultProjectApi` expose les méthodes suivantes aux
 - write
 - destroy
 
-Vous trouverez ce code dans le fichier `class.js`
+Vous trouverez ce code dans le fichier `class.ts`
 
 ```ts
 import { PluginApi, ProjectLite } from '@cpn-console/hooks'
@@ -154,7 +154,7 @@ export const createDsoProject: StepCall<Project> = async (payload) => {
 
     const vaultRegistrySecret = await vaultApi.read(...)
     
-    vaultApi.write(...)
+    await vaultApi.write(...)
     await vaultApi.write(...)
 
     return {
@@ -171,7 +171,6 @@ export const createDsoProject: StepCall<Project> = async (payload) => {
       error: parseError(error),
       status: {
         result: 'KO',
-        // @ts-ignore prévoir une fonction générique
         message: error.message,
       },
     }
